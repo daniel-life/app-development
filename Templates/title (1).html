@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Royal Carribean{% endblock %}
+
+{% block content %}
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">DATA</h3>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="/index">Home</a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="default_order" class="table table-striped table-bordered display no-wrap"
+                                   style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>First name</th>
+                                    <th>Last name</th>
+                                    <th>Date & time</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in users_list %}
+                                <tr>
+                                <td>{{ user.get_first_name() }}</td>
+                                <td>{{ user.get_last_name() }}</td>
+                                <td>{{ user.get_time() }}</td>
+                                {% if user.get_status() == "Safe" %}
+                                <td class="bg-success text-white">Safe</td>
+                                {% else %}
+                                <td class = "bg-danger text-white">Danger</td>
+                                {% endif %}
+                                <td><a href="/update_declaration_form/{{user.get_user_id()}}" class="btn btn-warning">Update</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>First name</th>
+                                    <th>Last name</th>>
+                                    <th>Date & time</th>
+                                    <th>Status</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
